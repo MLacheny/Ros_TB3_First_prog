@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?> <!-- version de xml ?-->
+<launch>
+
+  <!-- Run one mybot_teleop node -->
+  <node pkg="mybot_teleop" name="teleop" type="mybot_teleop.py"  
+        output="screen" required="true"> 
+        <!-- pkg : nom du package du noeud; 7
+             name : nom qui sera attribue au noeud a sa creation
+             type : executable donnant la structure du noeud
+             output : info ecrites sur le terminal ou dans un fichier log
+             required : si le noeud est detruit, detruit aussi tous les noeuds du launchfile-->
+        <param name = "linear_scale" type="double" value ="1.0"/>
+        <param name = "angular_scale" type = "double" value = "1.0"/>
+  </node>	
+  <node pkg = "turtlesim" name = "turtle" type="turtlesim_node"
+        output="screen" required = "true">
+  </node>
+</launch>
