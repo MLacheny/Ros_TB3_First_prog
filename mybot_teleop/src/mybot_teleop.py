@@ -10,7 +10,8 @@ from geometry_msgs.msg import Twist
 keys = {'\x1b[A':'up', '\x1b[B':'down', '\x1b[C':'right', '\x1b[D':'left', 's':'stop', 'q':'quit'}
 
 if __name__ == '__main__':
-	pub = rospy.Publisher('/turtle1/cmd_vel', Twist, queue_size = 1)
+	topic_name = rospy.get_param("/teleop/topic_name")
+	pub = rospy.Publisher(topic_name, Twist, queue_size = 1)
 	rospy.init_node('mybot_teleop', anonymous=True)
 	msg = Twist()
 	msg.linear.x = 0
@@ -24,6 +25,7 @@ if __name__ == '__main__':
 		try:
 			ang_s = rospy.get_param("/teleop/angular_scale")
 			lin_s = rospy.get_param("/teleop/linear_scale")
+			topic_name = rospy.get_param("/teleop/topic_name")
 			# Get character from console
 			mykey = click.getchar()
 			if mykey in keys.keys():
